@@ -1,0 +1,8 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://d0e2btnjf0f5j"]
+
+[sub_resource type="SystemFont" id="SystemFont_toqju"]
+
+[resource]
+font = SubResource("SystemFont_toqju")
+font_size = 1
+font_color = Color(0.627039, 0.180224, 0.193533, 1)

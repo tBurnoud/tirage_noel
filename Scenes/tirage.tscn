@@ -1,0 +1,102 @@
+[gd_scene load_steps=9 format=3 uid="uid://dumnbl3ywtwsu"]
+
+[ext_resource type="Script" path="res://Scripts/tirage.gd" id="1_jr1nt"]
+[ext_resource type="LabelSettings" uid="uid://d0e2btnjf0f5j" path="res://Ressources/label_settings_tirage.tres" id="2_vvbai"]
+
+[sub_resource type="Theme" id="Theme_b4kig"]
+default_font_size = 30
+
+[sub_resource type="Theme" id="Theme_6ih37"]
+default_font_size = 30
+
+[sub_resource type="InputEventKey" id="InputEventKey_oyqjd"]
+keycode = 4194309
+
+[sub_resource type="Shortcut" id="Shortcut_yj2qc"]
+events = [SubResource("InputEventKey_oyqjd")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_jdmm0"]
+keycode = 4194305
+
+[sub_resource type="Shortcut" id="Shortcut_ulmbo"]
+events = [SubResource("InputEventKey_jdmm0")]
+
+[node name="Tirage" type="Node2D" node_paths=PackedStringArray("next_button", "mainContainer", "tirage_container1", "tirage_container2", "shuffle_timer")]
+script = ExtResource("1_jr1nt")
+next_button = NodePath("VBoxContainer/HBoxContainer2/NextButton")
+mainContainer = NodePath("VBoxContainer")
+tirage_container1 = NodePath("VBoxContainer/HBoxContainer/VBoxContainer")
+tirage_container2 = NodePath("VBoxContainer/HBoxContainer/VBoxContainer2")
+shuffle_timer = NodePath("Timer")
+nb_shuffle = 5
+shuffle_delay = 0.05
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_right = 1080.0
+offset_bottom = 580.0
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme = SubResource("Theme_b4kig")
+text = "Anna donne à "
+label_settings = ExtResource("2_vvbai")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label2" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer2"]
+visible = false
+layout_mode = 2
+theme = SubResource("Theme_6ih37")
+text = "Bob"
+label_settings = ExtResource("2_vvbai")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="NextButton" type="Button" parent="VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+shortcut = SubResource("Shortcut_yj2qc")
+text = "Prochaine personne"
+
+[node name="ExitButton" type="Button" parent="VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+shortcut = SubResource("Shortcut_ulmbo")
+text = "Quitter"
+
+[node name="HSeparator2" type="HSeparator" parent="VBoxContainer"]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+size_flags_vertical = 8
+
+[connection signal="timeout" from="Timer" to="." method="shuffle_text"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/NextButton" to="." method="displayNextPerson"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/ExitButton" to="." method="_on_exit_button_pressed"]

@@ -1,0 +1,175 @@
+[gd_scene load_steps=4 format=3 uid="uid://blxmii33h1rg5"]
+
+[ext_resource type="Script" path="res://Scenes/options.gd" id="1_vre0i"]
+
+[sub_resource type="Theme" id="Theme_pm081"]
+default_font_size = 22
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8bc1m"]
+bg_color = Color(0.890197, 0.468114, 0.233382, 1)
+shadow_color = Color(0, 0, 0, 1)
+shadow_size = 5
+
+[node name="Options" type="Node2D" node_paths=PackedStringArray("TextContainer", "peopleContainer", "mainContainer", "ActivateShuffleButton", "ShuffleDelayButton", "ShuffleNumberButton", "shuffleDelayLabel", "shuffleNumberLabel", "popup_panel")]
+script = ExtResource("1_vre0i")
+TextContainer = NodePath("TabContainer/Participants/HBoxContainer/Label")
+peopleContainer = NodePath("TabContainer/Participants/ScrollContainer/VBoxContainer")
+mainContainer = NodePath("TabContainer")
+ActivateShuffleButton = NodePath("TabContainer/Options/HBoxContainer/ActivateShuffleButton")
+ShuffleDelayButton = NodePath("TabContainer/Options/HBoxContainer/VBoxContainer/ShuffleDelaySlider")
+ShuffleNumberButton = NodePath("TabContainer/Options/HBoxContainer/VBoxContainer/ShuffleDelaySlider")
+shuffleDelayLabel = NodePath("TabContainer/Options/HBoxContainer/VBoxContainer/Label")
+shuffleNumberLabel = NodePath("TabContainer/Options/HBoxContainer/VBoxContainer2/Label")
+popup_panel = NodePath("TabContainer/Participants/PopupPanel")
+
+[node name="TabContainer" type="TabContainer" parent="."]
+offset_right = 1080.0
+offset_bottom = 577.0
+size_flags_horizontal = 3
+current_tab = 0
+
+[node name="Participants" type="VBoxContainer" parent="TabContainer"]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="HSeparator3" type="HSeparator" parent="TabContainer/Participants"]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Participants"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="Button_minus" type="Button" parent="TabContainer/Participants/HBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "-1"
+
+[node name="Label" type="Label" parent="TabContainer/Participants/HBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "0"
+horizontal_alignment = 1
+
+[node name="Button_plus" type="Button" parent="TabContainer/Participants/HBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "+1
+"
+
+[node name="Button_quit" type="Button" parent="TabContainer/Participants/HBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 8
+text = "X"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/Participants"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Participants/ScrollContainer"]
+custom_minimum_size = Vector2(10, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HSeparator" type="HSeparator" parent="TabContainer/Participants"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="validate_Button" type="Button" parent="TabContainer/Participants"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+text = "Valider"
+
+[node name="PopupPanel" type="PopupPanel" parent="TabContainer/Participants"]
+auto_translate_mode = 1
+initial_position = 2
+size = Vector2i(1158, 100)
+theme = SubResource("Theme_pm081")
+theme_override_styles/panel = SubResource("StyleBoxFlat_8bc1m")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Participants/PopupPanel"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_right = 1158.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="TabContainer/Participants/PopupPanel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+text = "Impossible de faire un tirage avec moins de trois personnes !"
+
+[node name="PopupOkButton" type="Button" parent="TabContainer/Participants/PopupPanel/VBoxContainer"]
+layout_mode = 2
+text = "OK"
+
+[node name="Options" type="VBoxContainer" parent="TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Options"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ActivateShuffleButton" type="CheckButton" parent="TabContainer/Options/HBoxContainer"]
+layout_mode = 2
+text = "Shuffle display"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Options/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="TabContainer/Options/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Shuffle Delay
+0.1"
+
+[node name="ShuffleDelaySlider" type="VSlider" parent="TabContainer/Options/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+min_value = 0.01
+max_value = 1.0
+step = 0.01
+value = 0.1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="TabContainer/Options/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="TabContainer/Options/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "Number of shuffle
+10"
+
+[node name="ShuffleNumberSlider" type="VSlider" parent="TabContainer/Options/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+value = 10.0
+
+[node name="validate_Button2" type="Button" parent="TabContainer/Options"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+text = "Valider"
+
+[connection signal="tab_changed" from="TabContainer" to="." method="_on_tab_container_tab_changed"]
+[connection signal="pressed" from="TabContainer/Participants/HBoxContainer/Button_minus" to="." method="_on_button_minus_pressed"]
+[connection signal="pressed" from="TabContainer/Participants/HBoxContainer/Button_plus" to="." method="_on_button_plus_pressed"]
+[connection signal="pressed" from="TabContainer/Participants/HBoxContainer/Button_quit" to="." method="_on_button_quit_pressed"]
+[connection signal="pressed" from="TabContainer/Participants/validate_Button" to="." method="_on_validate_button_pressed"]
+[connection signal="pressed" from="TabContainer/Participants/PopupPanel/VBoxContainer/PopupOkButton" to="." method="_on_popup_ok_button_pressed"]
+[connection signal="pressed" from="TabContainer/Options/HBoxContainer/ActivateShuffleButton" to="." method="_on_activate_shuffle_button_pressed"]
+[connection signal="value_changed" from="TabContainer/Options/HBoxContainer/VBoxContainer/ShuffleDelaySlider" to="." method="_on_shuffle_delay_slider_value_changed"]
+[connection signal="value_changed" from="TabContainer/Options/HBoxContainer/VBoxContainer2/ShuffleNumberSlider" to="." method="_on_shuffle_number_slider_value_changed"]
+[connection signal="pressed" from="TabContainer/Options/validate_Button2" to="." method="_on_validate_button_pressed"]

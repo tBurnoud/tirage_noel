@@ -1,0 +1,55 @@
+[gd_scene load_steps=6 format=3 uid="uid://dvioblolodiih"]
+
+[ext_resource type="Script" path="res://Scripts/start_menu.gd" id="1_jp5ax"]
+[ext_resource type="Texture2D" uid="uid://bngmnn4d70fy" path="res://Ressources/icon.svg" id="2_5urgf"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_h3e5l"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_tkx4r"]
+keycode = 4194305
+
+[sub_resource type="Shortcut" id="Shortcut_mrlys"]
+events = [SubResource("InputEventKey_tkx4r")]
+
+[node name="StartMenu" type="Node2D"]
+script = ExtResource("1_jp5ax")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+material = SubResource("CanvasItemMaterial_h3e5l")
+offset_right = 1080.0
+offset_bottom = 580.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/VBoxContainer"]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_5urgf")
+stretch_mode = 3
+
+[node name="Launch" type="Button" parent="PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+text = "Lancer le tirage
+"
+
+[node name="Options" type="Button" parent="PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+text = "Options"
+
+[node name="Quit" type="Button" parent="PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+shortcut = SubResource("Shortcut_mrlys")
+text = "Quitter"
+
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Launch" to="." method="_on_launch_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
