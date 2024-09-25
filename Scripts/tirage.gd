@@ -99,7 +99,7 @@ func displayNextPerson():
 	tmp_text2.set_label_settings(label_settings)
 	
 	tmp_person.text = str(data[liste_transi[l]])
-	tmp_person.text += " done à "
+	tmp_person.text += " donne à "
 	personName = data[l]
 	
 	tirage_container1.add_child(tmp_person)
