@@ -1,4 +1,4 @@
 #!/bin/sh
-echo -ne '\033c\033]0;Tirage_noell\a'
+echo -ne '\033c\033]0;Tirage_noel\a'
 base_path="$(dirname "$(realpath "$0")")"
 "$base_path/Tirage_noel.x86_64" "$@"
