@@ -96,6 +96,37 @@ text = "Bob"
 layout_mode = 2
 text = "Bob"
 
+[node name="HBoxContainer3" type="VBoxContainer" parent="VBoxContainer/AspectRatioContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/AspectRatioContainer/HBoxContainer3"]
+layout_mode = 2
+
+[node name="GifToAnimatedTexturePlugin" type="GifToAnimatedTexturePlugin" parent="VBoxContainer/AspectRatioContainer/HBoxContainer3"]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 0
+auto_translate_mode = 0
+editor_description = ""
+script = null
+
+[node name="GifToSpriteFramesPlugin" type="GifToSpriteFramesPlugin" parent="VBoxContainer/AspectRatioContainer/HBoxContainer3"]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 0
+auto_translate_mode = 0
+editor_description = ""
+script = null
+
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 

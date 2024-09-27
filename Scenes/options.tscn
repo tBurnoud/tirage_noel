@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://blxmii33h1rg5"]
 
-[ext_resource type="Script" path="res://Scenes/options.gd" id="1_vre0i"]
+[ext_resource type="Script" path="res://Scripts/options.gd" id="1_vre0i"]
 
 [sub_resource type="Theme" id="Theme_pm081"]
 default_font_size = 22
@@ -10,7 +10,7 @@ bg_color = Color(0.890197, 0.468114, 0.233382, 1)
 shadow_color = Color(0, 0, 0, 1)
 shadow_size = 5
 
-[node name="Options" type="Node2D" node_paths=PackedStringArray("TextContainer", "peopleContainer", "mainContainer", "ActivateShuffleButton", "ShuffleDelayButton", "ShuffleNumberButton", "shuffleDelayLabel", "shuffleNumberLabel", "popup_panel")]
+[node name="Options" type="Node2D" node_paths=PackedStringArray("TextContainer", "peopleContainer", "mainContainer", "ActivateShuffleButton", "ShuffleDelayButton", "ShuffleNumberButton", "shuffleDelayLabel", "shuffleNumberLabel", "popup_panel_number", "popup_panel_duplicate")]
 script = ExtResource("1_vre0i")
 TextContainer = NodePath("TabContainer/Participants/HBoxContainer/Label")
 peopleContainer = NodePath("TabContainer/Participants/ScrollContainer/VBoxContainer")
@@ -20,7 +20,8 @@ ShuffleDelayButton = NodePath("TabContainer/Options/HBoxContainer/VBoxContainer/
 ShuffleNumberButton = NodePath("TabContainer/Options/HBoxContainer/VBoxContainer/ShuffleDelaySlider")
 shuffleDelayLabel = NodePath("TabContainer/Options/HBoxContainer/VBoxContainer/Label")
 shuffleNumberLabel = NodePath("TabContainer/Options/HBoxContainer/VBoxContainer2/Label")
-popup_panel = NodePath("TabContainer/Participants/PopupPanel")
+popup_panel_number = NodePath("TabContainer/Participants/PopupPanelNumber")
+popup_panel_duplicate = NodePath("TabContainer/Participants/PopupPanelDuplicate")
 
 [node name="TabContainer" type="TabContainer" parent="."]
 offset_right = 1080.0
@@ -87,32 +88,65 @@ custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 text = "Valider"
 
-[node name="PopupPanel" type="PopupPanel" parent="TabContainer/Participants"]
+[node name="PopupPanelNumber" type="PopupPanel" parent="TabContainer/Participants"]
 auto_translate_mode = 1
 initial_position = 2
 size = Vector2i(1158, 100)
 theme = SubResource("Theme_pm081")
 theme_override_styles/panel = SubResource("StyleBoxFlat_8bc1m")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Participants/PopupPanel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Participants/PopupPanelNumber"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_right = 1158.0
-offset_bottom = 100.0
+offset_left = -579.0
+offset_top = -50.0
+offset_right = 579.0
+offset_bottom = 50.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Label" type="Label" parent="TabContainer/Participants/PopupPanel/VBoxContainer"]
+[node name="Label" type="Label" parent="TabContainer/Participants/PopupPanelNumber/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 6
 text = "Impossible de faire un tirage avec moins de trois personnes !"
 
-[node name="PopupOkButton" type="Button" parent="TabContainer/Participants/PopupPanel/VBoxContainer"]
+[node name="PopupOkButton" type="Button" parent="TabContainer/Participants/PopupPanelNumber/VBoxContainer"]
+layout_mode = 2
+text = "OK"
+
+[node name="PopupPanelDuplicate" type="PopupPanel" parent="TabContainer/Participants"]
+auto_translate_mode = 1
+initial_position = 2
+size = Vector2i(1158, 100)
+theme = SubResource("Theme_pm081")
+theme_override_styles/panel = SubResource("StyleBoxFlat_8bc1m")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Participants/PopupPanelDuplicate"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -579.0
+offset_top = -50.0
+offset_right = 579.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="TabContainer/Participants/PopupPanelDuplicate/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+text = "Au moins un nom est présent en double dans la liste !"
+
+[node name="PopupOkButton" type="Button" parent="TabContainer/Participants/PopupPanelDuplicate/VBoxContainer"]
 layout_mode = 2
 text = "OK"
 
@@ -168,7 +202,8 @@ text = "Valider"
 [connection signal="pressed" from="TabContainer/Participants/HBoxContainer/Button_plus" to="." method="_on_button_plus_pressed"]
 [connection signal="pressed" from="TabContainer/Participants/HBoxContainer/Button_quit" to="." method="_on_button_quit_pressed"]
 [connection signal="pressed" from="TabContainer/Participants/validate_Button" to="." method="_on_validate_button_pressed"]
-[connection signal="pressed" from="TabContainer/Participants/PopupPanel/VBoxContainer/PopupOkButton" to="." method="_on_popup_ok_button_pressed"]
+[connection signal="pressed" from="TabContainer/Participants/PopupPanelNumber/VBoxContainer/PopupOkButton" to="." method="_on_popup_number_ok_button_pressed"]
+[connection signal="pressed" from="TabContainer/Participants/PopupPanelDuplicate/VBoxContainer/PopupOkButton" to="." method="_on_popup_duplicate_ok_button_pressed"]
 [connection signal="pressed" from="TabContainer/Options/HBoxContainer/ActivateShuffleButton" to="." method="_on_activate_shuffle_button_pressed"]
 [connection signal="value_changed" from="TabContainer/Options/HBoxContainer/VBoxContainer/ShuffleDelaySlider" to="." method="_on_shuffle_delay_slider_value_changed"]
 [connection signal="value_changed" from="TabContainer/Options/HBoxContainer/VBoxContainer2/ShuffleNumberSlider" to="." method="_on_shuffle_number_slider_value_changed"]
